@@ -11,9 +11,9 @@ library(shiny)
 library(shinythemes)
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
-ui <- navbarPage("Hot details from this reclusive oak's secret Life!", theme = shinytheme("flatly"),
+ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shinytheme("flatly"),
    
-   # Application title
+   # Panel title
    tabPanel("Oak Points"),
    tabPanel("Fog",
             # Select box with options for fog scenarios
@@ -21,10 +21,7 @@ ui <- navbarPage("Hot details from this reclusive oak's secret Life!", theme = s
               sidebarPanel(
                 selectInput("fog_scen", label = h3("Fog Scenarios"), 
                             choices = list("Constant" = 1, "Increase" = 2, "Decrease" = 3, "Elevation Threshold" = 4), 
-                            selected = 1),
-                
-                hr(),
-                fluidRow(column(3, verbatimTextOutput("value")))
+                            selected = 1)
                 
               ),
               
@@ -49,6 +46,7 @@ ui <- navbarPage("Hot details from this reclusive oak's secret Life!", theme = s
 server <- function(input, output) {
   
   output$value <- renderPrint({ input$fog_scen })
+  
   
 }
 
