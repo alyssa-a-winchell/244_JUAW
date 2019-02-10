@@ -23,7 +23,9 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                                        sidebarPanel(
                                          radioButtons("age", "Choose Age Group:",
                                                       c("Seedlings" = "seedsap",
-                                                        "Adults" = "adult"))
+                                                        "Adults" = "adult",
+                                                        "All" = "all")),
+                                         width = 5
                                        )
                                        
                               )
