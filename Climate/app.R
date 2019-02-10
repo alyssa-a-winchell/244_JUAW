@@ -27,6 +27,13 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                             sliderInput("range", "Range:",
                                         min = 2010, max = 2099,
                                         value = c(2010,2040), step = 30),
+                            noUiSliderInput(
+                              inputId = "time", label = "Select Time Period:",
+                              min = 2010, max = 2099, step = 30,
+                              value = c(2010, 2039), behaviour = "drag", limit = 30, margin = 30,
+                              format = wNumbFormat(decimals = 0,
+                                                   thousand = "",
+                                                   prefix = "Year: ")),
                             width = 4
                           ),
           
