@@ -15,48 +15,41 @@ ui <- navbarPage("Hot details from this reclusive oak's secret Life!", theme = s
    
    # Application title
    tabPanel("Oak Points"),
-   tabPanel("Fog Scenarios"),
-   tabPanel("Climate Scenarios"),
+   tabPanel("Fog",
+            # Select box with options for fog scenarios
+            sidebarLayout(
+              sidebarPanel(
+                selectInput("fog_scen", label = h3("Fog Scenarios"), 
+                            choices = list("Constant" = 1, "Increase" = 2, "Decrease" = 3, "Elevation Threshold" = 4), 
+                            selected = 1),
+                
+                hr(),
+                fluidRow(column(3, verbatimTextOutput("value")))
+                
+              ),
+              
+              # Show maps of SRI and SCR with the chosen fog scenario with seperate tabs for each island
+              mainPanel(
+                tabsetPanel(
+                  tabPanel("Santa Cruz"),
+                  tabPanel("Santa Rosa")
+                ),
+                plotOutput("distPlot")
+              )
+            )),
+   tabPanel("Climate")
    
    #adds tabs on the top for all of our sections
    
    
-   # Select box with options for fog scenarios
-   sidebarLayout(
-      sidebarPanel(
-        textInput("txt", "Text input:", "text here"),
-        sliderInput("slider", "Slider input:", 1, 100, 30),
-        actionButton("action", "Button"),
-        actionButton("action2", "Button2", class = "btn-primary"), 
-        sliderInput("bins",
-                     "Number of bins:",
-                     min = 1,
-                     max = 50,
-                     value = 30)
-      ),
-      
-      # Show maps of SRI and SCR with the chosen fog scenario with seperate tabs for each island
-      mainPanel(
-        tabsetPanel(
-          tabPanel("Santa Cruz"),
-          tabPanel("Santa Rosa")
-        ),
-         plotOutput("distPlot")
-      )
-   )
+
 )
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-   
-   output$distPlot <- renderPlot({
-      # generate bins based on input$bins from ui.R
-      x    <- faithful[, 2] 
-      bins <- seq(min(x), max(x), length.out = input$bins + 1)
-      
-      # draw the histogram with the specified number of bins
-      hist(x, breaks = bins, col = 'darkgray', border = 'white')
-   })
+  
+  output$value <- renderPrint({ input$fog_scen })
+  
 }
 
 # Run the application 
