@@ -9,6 +9,8 @@
 
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
+
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
@@ -37,9 +39,8 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                  ),
                  
                  
-                 tabPanel("Fog Scenarios"),
+                 tabPanel("Fog"),
                  tabPanel("Climate Scenarios")
-                 
 )
 
 # Define server logic required to draw a histogram
