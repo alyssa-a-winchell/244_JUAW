@@ -62,8 +62,11 @@ ui <- navbarPage("Let us tomenTELLYA about it!", theme = shinytheme("flatly"),
                               plotOutput("distPlot")
                             )
                           )),
+<<<<<<< HEAD
                  
                  
+=======
+>>>>>>> 81224b4018f966a00058b8c9371fb2d221ffc9a3
                  tabPanel("Climate Scenarios",
                           
                           sidebarLayout(
