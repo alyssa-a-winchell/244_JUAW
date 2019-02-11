@@ -9,6 +9,7 @@
 
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
@@ -26,14 +27,15 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                         choices = c("MPI 4.5 (Warm, Wet)", "CCSM4 (Hot, Wet)", "MIROC 4.5 (Warm,Dry) ", "MIROC 8.5 (Hot, Dry)")),
                             sliderInput("range", "Range:",
                                         min = 2010, max = 2099,
-                                        value = c(2010,2040), step = 30),
+                                        value = c(2010,2040), step = 30, dragRange = TRUE),
                             noUiSliderInput(
                               inputId = "time", label = "Select Time Period:",
                               min = 2010, max = 2099, step = 30,
                               value = c(2010, 2039), behaviour = "drag", limit = 30, margin = 30,
+                              color = "#2C778F",
                               format = wNumbFormat(decimals = 0,
                                                    thousand = "",
-                                                   prefix = "Year: ")),
+                                                   prefix = "Year ")),
                             width = 4
                           ),
           
