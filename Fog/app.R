@@ -32,10 +32,11 @@ ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shin
               # Show maps of SRI and SCR with the chosen fog scenario with seperate tabs for each island
               mainPanel(
                 tabsetPanel(
-                  tabPanel("Santa Cruz"),
-                  tabPanel("Santa Rosa")
-                ),
-                plotOutput("distPlot")
+                  tabPanel("Santa Cruz",
+                           plotOutput("distPlot")),
+                  tabPanel("Santa Rosa",
+                           plotOutput("distPlot"))
+                )
               )
             )),
    tabPanel("Climate")
