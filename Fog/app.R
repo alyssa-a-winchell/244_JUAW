@@ -9,6 +9,7 @@
 
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shinytheme("flatly"),
@@ -22,13 +23,10 @@ ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shin
                 selectInput("fog_scen", label = h3("Fog Scenarios"), 
                             choices = list("Constant" = 1, "Increase" = 2, "Decrease" = 3, "Elevation Threshold" = 4), 
                             selected = 1),
-                # Input: Custom currency format for with basic animation ----
-                sliderInput("time", "Time Periods",
-                            min = 1981, max = 2099,
-                            value = 0, step = 30,
-                            pre = "$", sep = ",",
-                            animate = TRUE)
-                
+                # Input: Custom 30 yr periods format with basic animation
+                sliderTextInput("Time","Time Periods" , 
+                                choices = c("1981 - 2010", "2010 - 2039", "2040 - 2069", "2070 - 2099"),
+                                animate = TRUE)
               ),
               
               # Show maps of SRI and SCR with the chosen fog scenario with seperate tabs for each island
