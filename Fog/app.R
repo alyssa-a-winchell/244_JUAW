@@ -10,6 +10,9 @@
 library(shiny)
 library(shinythemes)
 library(shinyWidgets)
+library(sf)
+library(raster)
+library(leaflet)
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shinytheme("flatly"),
