@@ -8,8 +8,21 @@
 #
 
 library(shiny)
+
 library(shinythemes)
-library(shinyWidgets)
+library(sf)
+library(raster)
+library(leaflet)
+
+combo <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/sri/combo.csv")
+scr_points <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/scr/all_4326.csv")
+
+
+leaf <- makeIcon(
+  iconUrl = "G:/data/GitHub/244_JUAW/app/data/oaks/leaf_icon.png", 
+  iconWidth = 50, iconHeight = 50)
+
+
 
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
@@ -20,15 +33,25 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                           
                           mainPanel(
                             tabsetPanel(
-                              tabPanel("Santa Cruz"),
+                              tabPanel("Santa Cruz",
+                                       selectInput("points_colors", "Choose Color:",
+                                                   c("Blue" = "blue",
+                                                     "Red" = "red",
+                                                     "Green" = "green",
+                                                     "Purple" = "purple",
+                                                     "Yellow" = "yellow",
+                                                     "Orange" = "orange")),
+                                       
+                                       leafletOutput("SCRpoints")),
                               tabPanel("Santa Rosa",
                                        sidebarPanel(
                                          radioButtons("age", "Choose Age Group:",
-                                                      c("Seedlings" = "seedsap",
+                                                      c("Seedlings" = "seed",
                                                         "Adults" = "adult",
                                                         "All" = "all")),
                                          width = 5
-                                       )
+                                       ),
+                                       leafletOutput("SRIpoints")
                                        
                               )
                             )
@@ -47,14 +70,34 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
-  output$distPlot <- renderPlot({
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  output$SCRpoints <- renderLeaflet({
+    leaflet() %>% 
+      addTiles() %>% 
+      setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
+      addMarkers(data = scr_points, lng = ~POINT_X, lat = ~POINT_Y, icon = leaf)
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
   })
+  
+  filteredData <- reactive({
+    combo[ combo$Age == input$age, ]
+  })
+  
+  output$SRIpoints <- renderLeaflet({
+    leaflet() %>% 
+      addTiles() %>% 
+      setView(lng = -120.107103, lat = 33.968757, zoom = 11) 
+    
+  })
+  
+  
+  observe({
+    
+    leafletProxy("SRIpoints") %>%
+      clearMarkers() %>% 
+      addMarkers(data = filteredData(), lng = ~POINT_X, lat = ~POINT_Y, icon = leaf)
+  })
+  
+  
 }
 
 # Run the application 
