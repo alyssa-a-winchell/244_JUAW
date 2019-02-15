@@ -8,18 +8,18 @@
 #
 
 library(shiny)
-
+library(tidyverse)
 library(shinythemes)
 library(sf)
 library(raster)
 library(leaflet)
 
-combo <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/sri/combo.csv")
-scr_points <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/scr/all_4326.csv")
+combo <- read.csv("app/data/oaks/sri/combo.csv")
+scr_points <- read.csv("app/data/oaks/scr/all_4326.csv")
 
 
 leaf <- makeIcon(
-  iconUrl = "G:/data/GitHub/244_JUAW/app/data/oaks/leaf_icon.png", 
+  iconUrl = "app/data/oaks/leaf_icon.png", 
   iconWidth = 50, iconHeight = 50)
 
 
@@ -84,7 +84,7 @@ server <- function(input, output) {
   
   output$SRIpoints <- renderLeaflet({
     leaflet() %>% 
-      addTiles() %>% 
+      addProviderTiles(providers$Esri.WorldStreetMap) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) 
     
   })
