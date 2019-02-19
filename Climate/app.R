@@ -10,6 +10,7 @@
 library(shiny)
 library(shinythemes)
 library(shinyWidgets)
+library(RColorBrewer)
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
@@ -50,14 +51,40 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
-  output$distPlot <- renderPlot({
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2] 
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  raster_color <- reactive({
+    input$raster_color
     
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
   })
+  
+  title_legend <- reactive({
+    input$title_legend
+    
+  })
+  
+  # What we need to do here is make it call the correct tiff file
+  climate_raster <- reactive({
+    combo[ combo$Age == input$age, ]
+  })
+  
+  output$SRImap <- renderLeaflet({
+    leaflet() %>% 
+      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      setView(lng = -119.722862, lat = 34.020433, zoom = 11)
+
+  })
+  
+  observe({
+    
+    leafletProxy("SRImap") %>%
+      addRasterImage(raster, colors = raster_color()) %>% 
+      addLegend(pal = raster_color(), values = values (raster),
+                title = title_legend())
+      
+  })
+  
+  
+  
+  
 }
 
 # Run the application 
