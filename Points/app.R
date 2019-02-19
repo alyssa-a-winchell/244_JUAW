@@ -40,22 +40,22 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                                                   "Green" = "yellowgreen",
                                                   "Purple" = "#8a4f7e",
                                                   "Orange" = "#d9a440")),
-                            tabsetPanel(
-                              tabPanel("Santa Cruz",
-                                       leafletOutput("SCRpoints")),
-                              
-                              tabPanel("Santa Rosa",
-                                       sidebarPanel(
-                                         radioButtons("age", "Choose Age Group:",
-                                                      c("Seedlings" = "seed",
-                                                        "Adults" = "adult",
-                                                        "All" = "all")),
-                                         width = 5
-                                       ),
-                                       leafletOutput("SRIpoints")
-                                       
-                              )
-                            )
+                                    tabsetPanel(
+                                      tabPanel("Santa Cruz",
+                                               leafletOutput("SCRpoints")),
+                                      
+                                      tabPanel("Santa Rosa",
+                                               sidebarPanel(
+                                                 radioButtons("age", "Choose Age Group:",
+                                                              c("Seedlings" = "seed",
+                                                                "Adults" = "adult",
+                                                                "All" = "all")),
+                                                 width = 5
+                                               ),
+                                               leafletOutput("SRIpoints")
+                                               
+                                      )
+                                    )
                           )
                           
                           
