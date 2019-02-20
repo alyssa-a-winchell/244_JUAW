@@ -32,34 +32,40 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                  
                  # Application title
                  tabPanel("Oak Points",
+                          sidebarLayout(
+                            sidebarPanel(selectInput("points_colors", "Choose Color:",
+                                                     c("Blue" = "#004d99",
+                                                       "Red" = "darkred",
+                                                       "Green" = "yellowgreen",
+                                                       "Purple" = "#8a4f7e",
+                                                       "Orange" = "#d9a440"))
+                            ),
+                            mainPanel(
+                              
+                              tabsetPanel(
+                                tabPanel("Santa Cruz",
+                                         leafletOutput("SCRpoints")),
+                                
+                                tabPanel("Santa Rosa",
+                                         sidebarPanel(
+                                           radioButtons("age", "Choose Age Group:",
+                                                        c("Seedlings" = "seed",
+                                                          "Adults" = "adult",
+                                                          "All" = "all")),
+                                           width = 5
+                                         ),
+                                         leafletOutput("SRIpoints")
+                                         
+                                )
+                              )
+                            )
                           
                           
-                          mainPanel(selectInput("points_colors", "Choose Color:",
-                                                c("Blue" = "#004d99",
-                                                  "Red" = "darkred",
-                                                  "Green" = "yellowgreen",
-                                                  "Purple" = "#8a4f7e",
-                                                  "Orange" = "#d9a440")),
-                                    tabsetPanel(
-                                      tabPanel("Santa Cruz",
-                                               leafletOutput("SCRpoints")),
-                                      
-                                      tabPanel("Santa Rosa",
-                                               sidebarPanel(
-                                                 radioButtons("age", "Choose Age Group:",
-                                                              c("Seedlings" = "seed",
-                                                                "Adults" = "adult",
-                                                                "All" = "all")),
-                                                 width = 5
-                                               ),
-                                               leafletOutput("SRIpoints")
-                                               
-                                      )
-                                    )
-                          )
                           
                           
                           
+                          
+                 )
                  ),
                  
                  
@@ -67,6 +73,7 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                  tabPanel("Climate Scenarios")
                  
 )
+
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
@@ -105,7 +112,7 @@ server <- function(input, output) {
     
     leafletProxy("SRIpoints") %>%
       clearMarkers() %>% 
-      addCircleMarkers(data = filteredData(), lng = ~POINT_X, lat = ~POINT_Y, radius = 4, fillColor = points_color(), stroke = FALSE, fillOpacity = 0.5)
+      addCircleMarkers(data = filteredData(), lng = ~POINT_X, lat = ~POINT_Y, radius = 4, fillColor = points_color(), stroke = FALSE, fillOpacity = 0.4)
   })
   
   
