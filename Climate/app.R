@@ -15,6 +15,28 @@ library(leaflet)
 library(sf)
 library(raster)
 
+test <- raster("G:/data/GitHub/244_JUAW/app/data/climate/sri/CCSM4_rcp85_2010_2039/1.tif")
+
+plot(test)
+
+# Set the directory name where we ill get files from 
+climate_dir <- list.dirs("G:/data/GitHub/244_JUAW/app/data/climate/sri")
+
+cwd <- "1.tif"
+ppt <- "2.tif"
+tmn <- "3.tif"
+tmx <- "4.tif"
+
+MPI_rcp45 <- "MPI_rcp45"
+CCSM4_rcp85 <- "CCSM4_rcp85"
+MIROC_rcp45 <- "MIROC_rcp45"
+MIROC_rcp85 <- "MIROC_rcp85"
+
+historic <- "historic"
+first <- "2010_2039"
+second <-"2040_2069"
+third <- "2070_2099"
+
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                  
@@ -26,21 +48,21 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                           sidebarLayout(
                             sidebarPanel(
                             selectInput("variable", "Choose an Environmental Variable:",
-                                        choices = c("Climate Water Deficit (CWD)", 
-                                                    "Precipitation (PPT)", 
-                                                    "Minimum Winter Temperature", 
-                                                    "Maximum Summer Temperature")),
+                                        choices = c("Climate Water Deficit" = "cwd", 
+                                                    "Precipitation" = "2.tif", 
+                                                    "Minimum Winter Temperature" = "3.tif", 
+                                                    "Maximum Summer Temperature" = "4.tif")),
                             selectInput("scenario", "Choose a Climate Scenario:",
                                         choices = c("MPI 4.5 (Warm, Wet)" = "MPI_rcp45", 
                                                     "CCSM4 (Hot, Wet)" = "CCSM4_rcp85", 
                                                     "MIROC 4.5 (Warm,Dry) " = "MIROC_rcp45", 
-                                                    "MIROC 8.5 (Hot, Dry)")) = "MIROC_rcp85",
+                                                    "MIROC 8.5 (Hot, Dry)" = "MIROC_rcp85")),
                             # Input: Custom 30 yr periods format with basic animation
                             sliderTextInput("time","Time Periods" , 
-                                            choices = c("1981 - 2010", 
-                                                        "2010 - 2039", 
-                                                        "2040 - 2069", 
-                                                        "2070 - 2099"),
+                                            choices = c("1981 - 2010" = "historic", 
+                                                        "2010 - 2039" = "first", 
+                                                        "2040 - 2069" = "second", 
+                                                        "2070 - 2099" = "third"),
                                             animate = TRUE),
                             checkboxInput("climate_legend", "Show legend", TRUE),
                             selectInput("raster_color", "Choose Color:",
@@ -84,39 +106,40 @@ server <- function(input, output) {
   })
   
   # What we need to do here is make it call the correct tiff file
-  climate_scenario <- reactive({
-    tempdir <- tempdir(path = "G:/data/GitHub/244_JUAW/app/data/climate/sri", 
-                       pattern = "CCSM4",
-                       full.names = TRUE, recursive = TRUE)
-    
-    temp_list <- list.dirs("G:/data/GitHub/244_JUAW/app/data/climate/sri",
-                           full.names= TRUE,
-                           pattern = gr)
+  
+  
+  
+  climate_time <- reactive({
+    grep(input$time, climate_dir, value = TRUE)
 
   })
   
-  climate_time <- reactive({
-    tempdir(path = "G:/data/GitHub/244_JUAW/app/data/climate/sri", 
-              pattern = input$time, 
-              full.names = TRUE, recursive = TRUE)
+  climate_scenario <- reactive({
+    grep(input$scenario, climate_time(), value = TRUE)
+    
+  })
+  
+  climate_raster0 <- reactive({
+    file.path(climate_scenario(), input$variable)
     
   })
   
   climate_raster <- reactive({
-    input$variable
-    
+    raster(climate_raster0)
   })
+  
+  # Calling the Leaflet map
   
   output$SRIclimatemap <- renderLeaflet({
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
-      setView(lng = -119.722862, lat = 34.020433, zoom = 11)
+      setView(lng = -120.107103, lat = 33.968757, zoom = 11)
 
   })
   
   observe({
     
-    leafletProxy("map", data = filteredData()) %>%
+    leafletProxy("SRIclimatemap", data = data) %>%
       clearShapes() %>%
       addRasterImage(climate_raster(), colors = raster_color()
       )
