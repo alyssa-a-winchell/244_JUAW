@@ -140,10 +140,18 @@ server <- function(input, output) {
     # climate_sri<-raster(paste0("data/climate/sri/historic/cwd.tif")) 
     proj4string(climate_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
+    pal <- colorNumeric(
+      palette = "YlGnBu",
+      domain = values(climate_sri)
+    )
+    
+    
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
-      addRasterImage(climate_sri, opacity = 0.8)
+      addRasterImage(climate_sri, opacity = 0.8) %>% 
+      addLegend("bottomright", pal = pal, values= values(climate_sri),
+                title = "Est. GDP (2010)")
     
   })
   
