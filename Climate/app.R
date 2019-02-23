@@ -15,27 +15,6 @@ library(leaflet)
 library(sf)
 library(raster)
 
-test <- raster("G:/data/GitHub/244_JUAW/app/data/climate/sri/CCSM4_rcp85_2010_2039/1.tif")
-
-plot(test)
-
-# Set the directory name where we ill get files from 
-climate_dir <- list.dirs("G:/data/GitHub/244_JUAW/app/data/climate/sri")
-
-cwd <- "1.tif"
-ppt <- "2.tif"
-tmn <- "3.tif"
-tmx <- "4.tif"
-
-MPI_rcp45 <- "MPI_rcp45"
-CCSM4_rcp85 <- "CCSM4_rcp85"
-MIROC_rcp45 <- "MIROC_rcp45"
-MIROC_rcp85 <- "MIROC_rcp85"
-
-historic <- "historic"
-first <- "2010_2039"
-second <-"2040_2069"
-third <- "2070_2099"
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
 ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
@@ -52,17 +31,17 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                                     "Precipitation" = "2.tif", 
                                                     "Minimum Winter Temperature" = "3.tif", 
                                                     "Maximum Summer Temperature" = "4.tif")),
-                            selectInput("scenario", "Choose a Climate Scenario:",
+                            selectInput("climate_scenario", "Choose a Climate Scenario:",
                                         choices = c("MPI 4.5 (Warm, Wet)" = "MPI_rcp45", 
                                                     "CCSM4 (Hot, Wet)" = "CCSM4_rcp85", 
                                                     "MIROC 4.5 (Warm,Dry) " = "MIROC_rcp45", 
                                                     "MIROC 8.5 (Hot, Dry)" = "MIROC_rcp85")),
                             # Input: Custom 30 yr periods format with basic animation
-                            sliderTextInput("time","Time Periods" , 
-                                            choices = c("1981 - 2010" = "historic", 
-                                                        "2010 - 2039" = "first", 
-                                                        "2040 - 2069" = "second", 
-                                                        "2070 - 2099" = "third"),
+                            sliderTextInput("climate_time","Time Periods" , 
+                                            choices = c("1981 - 2010", 
+                                                        "2010 - 2039", 
+                                                        "2040 - 2069", 
+                                                        "2070 - 2099"),
                                             animate = TRUE),
                             checkboxInput("climate_legend", "Show legend", TRUE),
                             selectInput("raster_color", "Choose Color:",
@@ -130,36 +109,47 @@ server <- function(input, output) {
   
   # Calling the Leaflet map
   
+  
   output$SRIclimatemap <- renderLeaflet({
+    
+    
+    climate_scen <-switch(input$climate_scenario,
+                 "MPI 4.5 (Warm, Wet)"=climate_scenario<-"MPI_rcp45", 
+                 "CCSM4 (Hot, Wet)"=climate_scenario<-"CCSM4_rcp85", 
+                 "MIROC 4.5 (Warm,Dry)"=climate_scenario<-"MIROC_rcp45", 
+                 "MIROC 8.5 (Hot, Dry)"=climate_scenario<-"MIROC_rcp85")
+    
+    climate_time <-switch(input$climate_time,
+                 "2010-2039"=climate_time<-"_2010_2039",
+                 "2040-2069"=climate_time<-"_2040_2069", 
+                 "2070-2099"=climate_time<-"_2070_2099")
+    
+    climate_var<-switch(input$variable,
+                        "Climate Water Deficit"=proj<-"cwd",
+                        "Precipitation"=proj<-"ppt", 
+                        "Minimum Winter Temperature"=proj<-"tmn", 
+                        "Maximum Summer Temperature"=proj<-"tmx")
+    
+    
+    
+    
+    climate_scr<-raster(paste0("G:/data/GitHub/244_JUAW/app/data/climate/scr/",climate_scen, climate_time,"/",climate_var,".tif")) 
+    proj4string(climate_scr) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+    
+    
+    climate_sri<-raster(paste0("G:/data/GitHub/244_JUAW/app/data/climate/sri/",climate_scen, climate_time,"/",climate_var,".tif")) 
+    proj4string(climate_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+    
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
-      setView(lng = -120.107103, lat = 33.968757, zoom = 11)
+      setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
+      addRasterImage(climate_sri, opacity = 0.8)
+  
+  })
+  
 
-  })
-  
-  observe({
     
-    leafletProxy("SRIclimatemap", data = data) %>%
-      clearShapes() %>%
-      addRasterImage(climate_raster(), colors = raster_color()
-      )
-  })
-  
-  observe({
-    climate_proxy <- leafletProxy("SRIclimatemap") # Need to make the data refer to the right raster
-    
-    # Remove any existing legend, and only if the legend is
-    # enabled, create a new one.
-    climate_proxy %>% clearControls()
-    if (input$climate_legend) {
-      pal <- raster_color()
-      proxy %>% addLegend(position = "bottomright",
-                          pal = raster_color(), values = values(climate_raster()),
-                          title = title_legend()
-      )
-    }
-    })
-  }
+}
   
   
   
