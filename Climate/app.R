@@ -126,23 +126,13 @@ server <- function(input, output) {
        input$climate_variable
     })
 
-     myLabelFormat = function(..., reverse_order = FALSE){ 
-       if(reverse_order){ 
-         function(type = "numeric", cuts){ 
-           cuts <- sort(cuts, decreasing = T)
-         } 
-       }else{
-         labelFormat(...)
-       }
-     }
     
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
-                title = climate_title(), 
-                labFormat = myLabelFormat(reverse_order = T))
+                title = climate_title())
     # And stop here 
     
   })
@@ -185,7 +175,7 @@ server <- function(input, output) {
       input$raster_color_climate
     })
     
-    pal <- colorNumeric(
+    climate_pal <- colorNumeric(
       palette = climate_colors(),
       domain = values(climate_stack),
       na.color = NA,
@@ -197,25 +187,16 @@ server <- function(input, output) {
     })
     
     
-    myLabelFormat = function(..., reverse_order = FALSE){ 
-      if(reverse_order){ 
-        function(type = "numeric", cuts){ 
-          cuts <- sort(cuts, decreasing = T)
-        } 
-      }else{
-        labelFormat(...)
-      }
-    }
+
     
     
     
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
-      addRasterImage(climate_scr, colors = pal, opacity = 0.8) %>% 
-      addLegend("bottomright", pal = pal, values= values(climate_stack),
-                title = climate_title(),
-                labFormat = myLabelFormat(reverse_order = T))
+      addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
+      addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
+                title = climate_title())
     
     
     
