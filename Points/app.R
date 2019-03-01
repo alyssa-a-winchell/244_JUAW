@@ -16,8 +16,9 @@ library(RColorBrewer)
 
 
 # Read in the data
-combo <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/sri/combo.csv")
-scr_points <- read.csv("G:/data/GitHub/244_JUAW/app/data/oaks/scr/all_4326.csv")
+combo <- read.csv("data/oaks/sri/combo.csv")
+scr_points <- read.csv("data/oaks/scr/all_4326.csv")
+
 
 # Make icon for the maps as marker image. However it would work better with circles
 leaf <- makeIcon(
@@ -45,6 +46,7 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                               tabsetPanel(
                                 tabPanel("Santa Cruz",
                                          leafletOutput("SCRpoints")),
+                                h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Cruz are concentrated on the northern side of the island. In total, there are 271 total oak points on Santa Cruz."),
                                 
                                 tabPanel("Santa Rosa",
                                          sidebarPanel(
@@ -56,7 +58,8 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
                                          ),
                                          leafletOutput("SRIpoints")
                                          
-                                )
+                                ),
+                                h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Rosa are found mainly in the central valley and away from the coast. In total, there is a total of 1001 oak points on Santa Rosa. Out of these points, XX are seedlings and XX are adults.")
                               )
                             )
                           

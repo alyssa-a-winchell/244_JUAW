@@ -59,6 +59,7 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                 tabPanel("Santa Rosa",
                                          leafletOutput("SRIclimatemap"))
                               )
+                              
                             ),
                             
                             position = c("left", "right"),
@@ -160,7 +161,7 @@ server <- function(input, output) {
     climate_var<-switch(input$climate_variable,
                         "Climate Water Deficit"=climate_var<-"cwd",
                         "Precipitation"=climate_var<-"ppt", 
-                        "Minimum WinterTemperature"=climate_var<-"tmn", 
+                        "Minimum Winter Temperature"=climate_var<-"tmn", 
                         "Maximum Summer Temperature"=climate_var<-"tmx")
     
     
