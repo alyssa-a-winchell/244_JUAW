@@ -44,12 +44,12 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                                           "2070-2099"),
                                               animate = TRUE),
                               checkboxInput("climate_legend", "Show legend", TRUE),
-                              selectInput("raster_color_climate", "Choose Color:",
+                              selectInput("raster_color_climate", "Choose Color Theme:",
                                           c("Rainbow" = "Spectral",
-                                            "Blue" = "YlGnBu",
-                                            "Green" = "YlGn",
-                                            "Purple" = "PuRd",
-                                            "Yellow" = "YlOrRd"))
+                                            "Yellow, Green, Blue" = "YlGnBu",
+                                            "Yellow, Green" = "YlGn",
+                                            "Purple, Red" = "PuRd",
+                                            "Yellow, Orange, Red" = "YlOrRd"))
                             ),
                             
                             mainPanel(
@@ -160,7 +160,7 @@ server <- function(input, output) {
     climate_var<-switch(input$climate_variable,
                         "Climate Water Deficit"=climate_var<-"cwd",
                         "Precipitation"=climate_var<-"ppt", 
-                        "Minimum Winter Temperature"=climate_var<-"tmn", 
+                        "Minimum WinterTemperature"=climate_var<-"tmn", 
                         "Maximum Summer Temperature"=climate_var<-"tmx")
     
     
