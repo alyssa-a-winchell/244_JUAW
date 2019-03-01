@@ -14,6 +14,7 @@ library(shinyWidgets)
 library(leaflet)
 library(sf)
 library(raster)
+library(rgdal)
 
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
