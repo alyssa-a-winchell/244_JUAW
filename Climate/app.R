@@ -103,18 +103,20 @@ server <- function(input, output) {
     # climate_sri<-raster(paste0("data/climate/sri/historic/cwd.tif")) 
     proj4string(climate_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
+    
+    #This is where you want ot start copying code from
     climate_stack_list <- list.dirs("data/climate/sri/", recursive = TRUE, full.names = TRUE)
     files <- climate_stack_list[grep(paste0(climate_scen), climate_stack_list, fixed=T)]
     climate_files <- dir(files, recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
     
     climate_stack <- stack(climate_files)
     
-    climate_colors <- reactive({
+    climate_colors <- reactive({ # delete
       input$raster_color_climate
     })
     
-    pal <- colorNumeric(
-      palette = climate_colors(),
+    pal <- colorNumeric( 
+      palette = climate_colors(), # pick "Blues"
       domain = values(climate_stack),
       na.color = NA,
       reverse = TRUE
@@ -139,10 +141,13 @@ server <- function(input, output) {
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
-                title = climate_title(),
+                title = climate_title(), 
                 labFormat = myLabelFormat(reverse_order = T))
+    # And stop here 
     
   })
+  
+  
   
   output$SCRclimatemap <- renderLeaflet({
     
