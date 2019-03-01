@@ -71,41 +71,7 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
 
 
 server <- function(input, output) {
-  
-  # # Raster Palette Color
-  # raster_color <- reactive({
-  #   colorNumeric(input$raster_color)
-  #   
-  # })
-  # 
-  # title_legend <- reactive({
-  #   input$title_legend
-  #   
-  # })
-  # 
-  # What we need to do here is make it call the correct tiff file
-  
-  
-  
-  # climate_time <- reactive({
-  #   grep(input$time, climate_dir, value = TRUE)
-  #   
-  # })
-  # 
-  # climate_scenario <- reactive({
-  #   grep(input$scenario, climate_time(), value = TRUE)
-  #   
-  # })
-  # 
-  # climate_raster0 <- reactive({
-  #   file.path(climate_scenario(), input$variable)
-  #   
-  # })
-  # 
-  # climate_raster <- reactive({
-  #   raster(climate_raster0)
-  # })
-  
+
   # Calling the Leaflet map
   
   
@@ -129,36 +95,40 @@ server <- function(input, output) {
                         "Minimum Winter Temperature"=climate_var<-"tmn", 
                         "Maximum Summer Temperature"=climate_var<-"tmx")
     
-    
-    
-    
-    # climate_scr<-raster(paste0("G:/data/GitHub/244_JUAW/app/data/climate/scr/",climate_scen, climate_time,"/",climate_var,".tif")) 
-    # proj4string(climate_scr) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
-    
+  
     
     climate_sri<-raster(paste0("data/climate/sri/", climate_scen,  "_", climate_hands, "/", climate_var, ".tif"))
     # climate_sri<-raster(paste0("data/climate/sri/historic/cwd.tif")) 
     proj4string(climate_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
+    climate_stack_list <- list.dirs("data/climate/sri/", recursive = TRUE, full.names = TRUE)
+    files <- climate_stack_list[grep(paste0(climate_scen), climate_stack_list, fixed=T)]
+    climate_files <- dir(files, recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
+    
+    climate_stack <- stack(climate_files)
+    
     pal <- colorNumeric(
       palette = "YlGnBu",
-      domain = values(climate_sri)
+      domain = values(climate_stack),
+      na.color = NA
     )
+    
+     climate_title <- reactive({
+       input$climate_variable
+    })
+
     
     
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
-      addRasterImage(climate_sri, opacity = 0.8) %>% 
-      addLegend("bottomright", pal = pal, values= values(climate_sri),
-                title = "Est. GDP (2010)")
+      addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
+      addLegend("bottomright", pal = pal, values= values(climate_stack),
+                title = climate_title())
     
   })
-  
-  
-  
-}
 
+}
 
 
 
