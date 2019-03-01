@@ -1,0 +1,93 @@
+OBJECTID,AREA,PERIMETER,ZN10OAKS_,ZN10OAKS_I,COMMENT,FEAT_NAME,DATAFILE,UNFILT_POS,GPS_HEIGHT,FILESOURCE,Max_PDOP,Corr_Type,Std_Dev,Horz_Prec,Vert_Prec,Uniq_ID,Uniq_ID_1,COMMENT_1,Age,DBH,Stems,Extra,POINT_X,POINT_Y,Species
+1,0,0,1,1,QTY MANY,Point_generic,wtr83101.ssf,40,169.938,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,0,0,QTY MANY,young,0,0,Many,-120.0571565,33.98232102,quercus tomentella
+2,0,0,2,2,QTA 12 TO 15IN DBH 10TREESMAYBE,Point_generic,wtr83101.ssf,53,169.926,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,1,1,QTA 12 TO 15IN DBH 10TREESMAYBE,adult,12,10, ,-120.0571544,33.98232097,quercus tomentella
+3,0,0,4,4,QTA QTY 30 TO 50 STEMS,Point_generic,blk91301.ssf,14,347.079,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,3,3,QTA QTY 30 TO 50 STEMS,adult,0,30,1 young,-120.0845988,33.9749519,quercus tomentella
+4,0,0,26,26,QTA QTY POSSIBLY 100 STEMS,Point_generic,blk91301.ssf,35,358.762,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,25,25,QTA QTY POSSIBLY 100 STEMS,young,0,100,1 adult,-120.0828136,33.97504703,quercus tomentella
+5,0,0,30,30,QTA,Point_generic,blk91301.ssf,5,359.047,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,29,29,QTA,adult,0,0, ,-120.0827049,33.97504219,quercus tomentella
+6,0,0,42,42,2 QTA,Point_generic,blk91301.ssf,11,354.703,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,41,41,2 QTA,adult,0,2, ,-120.0826534,33.97508379,quercus tomentella
+7,0,0,47,47,QTB QTY,Point_generic,blk91301.ssf,11,351.949,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,46,46,QTB QTY,young,0,0, ,-120.082629,33.97512603,quercus tomentella
+8,0,0,48,48,QTA QTY QTB MAYBE 30 STEMS,Point_generic,blk91301.ssf,26,354.574,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,47,47,QTA QTY QTB MAYBE 30 STEMS,adult,0,30,1 young,-120.0826035,33.97512092,quercus tomentella
+9,0,0,66,66,QTA,Point_generic,blk91301.ssf,10,352.796,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,65,65,QTA,adult,0,0, ,-120.0819967,33.97520343,quercus tomentella
+10,0,0,284,284,QTA,Point_generic,chy90301.ssf,15,230.802,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,72,72,QTA,adult,0,0, ,-120.0718493,33.98122051,quercus tomentella
+11,0,0,286,286,2QTY QTB,Point_generic,chy90301.ssf,17,240.013,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,74,74,2QTY QTB,young,0,2, ,-120.0717676,33.98097968,quercus tomentella
+12,0,0,287,287,8QTA 1QTY,Point_generic,chy90301.ssf,14,230.534,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,75,75,8QTA 1QTY,adult,0,8,1 young,-120.0715979,33.98150974,quercus tomentella
+13,0,0,290,290,1QTA 2QTY QTB,Point_generic,chy90301.ssf,21,225.279,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,78,78,1QTA 2QTY QTB,adult,0,0,2 young,-120.0715552,33.98168902,quercus tomentella
+14,0,0,294,294,QTY,Point_generic,chy90301.ssf,10,210.585,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,82,82,QTY,young,0,0, ,-120.070984,33.98193683,quercus tomentella
+15,0,0,299,299,QTY,Point_generic,chy90301.ssf,10,206.144,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,87,87,QTY,young,0,0, ,-120.071232,33.98200358,quercus tomentella
+16,0,0,300,300,QTA,Point_generic,chy90301.ssf,10,210.178,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,88,88,QTA,adult,0,0, ,-120.0712281,33.98209589,quercus tomentella
+17,0,0,301,301,1 TO 3QTA 1QTY,Point_generic,chy90301.ssf,17,207.997,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,89,89,1 TO 3QTA 1QTY,adult,0,0,1 young,-120.0711429,33.98209611,quercus tomentella
+18,0,0,303,303,2QTA,Point_generic,chy90301.ssf,16,211.229,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,91,91,2QTA,adult,0,2, ,-120.0712282,33.9821342,quercus tomentella
+19,0,0,304,304,2QTY NOT QTA,Point_generic,chy90301.ssf,20,211.116,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,92,92,2QTY NOT QTA,young,0,2, ,-120.0712275,33.98213419,quercus tomentella
+20,0,0,305,305,QTA,Point_generic,chy90301.ssf,10,211.074,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,93,93,QTA,adult,0,0, ,-120.0712034,33.98220573,quercus tomentella
+21,0,0,306,306,QTA QTB,Point_generic,chy90301.ssf,9,207.157,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,94,94,QTA QTB,adult,0,0, ,-120.0711675,33.98220713,quercus tomentella
+22,0,0,309,309,QTY QTSE QTSP,Point_generic,chy90301.ssf,22,199.804,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,97,97,QTY QTSE QTSP,young,0,0,seedling and sapling,-120.071041,33.98214778,quercus tomentella
+23,0,0,311,311,QTA,Point_generic,chy90301.ssf,10,203.422,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,99,99,QTA,adult,0,0, ,-120.0708938,33.98210145,quercus tomentella
+24,0,0,312,312,QTA,Point_generic,chy90301.ssf,12,197.316,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,100,100,QTA,adult,0,0, ,-120.0707735,33.98221802,quercus tomentella
+25,0,0,313,313,QTA 2STEM,Point_generic,chy90301.ssf,5,190.154,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,101,101,QTA 2STEM,adult,0,2, ,-120.0706524,33.98221965,quercus tomentella
+26,0,0,314,314,QTA STUMP,Point_generic,chy90301.ssf,10,201.143,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,102,102,QTA STUMP,adult,0,0,stump,-120.0706234,33.98219642,quercus tomentella
+27,0,0,316,316,QTA STUMP,Point_generic,chy90301.ssf,10,199.835,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,104,104,QTA STUMP,adult,0,0,stump,-120.0706108,33.98228852,quercus tomentella
+28,0,0,317,317,QTA,Point_generic,chy90301.ssf,10,197.174,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,105,105,QTA,adult,0,0, ,-120.0706122,33.98234489,quercus tomentella
+29,0,0,318,318,QTA,Point_generic,chy90301.ssf,6,199.2,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,106,106,QTA,adult,0,0, ,-120.0705706,33.98233714,quercus tomentella
+30,0,0,325,325,QTA,Point_generic,chy90301.ssf,10,200.083,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,113,113,QTA,adult,0,0, ,-120.0705243,33.98240365,quercus tomentella
+31,0,0,335,335,QTA QTY QTB,Point_generic,chy90401.ssf,10,222.987,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,123,123,QTA QTY QTB,adult,0,0,1 young,-120.070167,33.98229372,quercus tomentella
+32,0,0,340,340,QAB,Point_generic,chy90401.ssf,10,224.114,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,128,128,QAB,adult,0,0, ,-120.069943,33.98253402,quercus tomentella
+33,0,0,346,346,QTA QTY SEVERAL LG CANOPY,Point_generic,chy90401.ssf,64,209.327,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,134,134,QTA QTY SEVERAL LG CANOPY,adult,0,0,"several young, large canopy",-120.0702135,33.98272978,quercus tomentella
+34,0,0,354,354,QTA,Point_generic,chy90401.ssf,32,176.462,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,142,142,QTA,adult,0,0, ,-120.0702825,33.98459967,quercus tomentella
+35,0,0,355,355,QTA,Point_generic,chy90401.ssf,22,174.76,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,143,143,QTA,adult,0,0, ,-120.0702489,33.98469352,quercus tomentella
+36,0,0,356,356,7QTA 1QTY,Point_generic,chy90401.ssf,23,172.789,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,144,144,7QTA 1QTY,adult,0,7,1 young,-120.0702068,33.98475787,quercus tomentella
+37,0,0,357,357,QTA,Point_generic,chy90401.ssf,10,173.594,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,145,145,QTA,adult,0,0, ,-120.0702349,33.9848239,quercus tomentella
+38,0,0,359,359,QTY,Point_generic,chy91601.ssf,10,81.911,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,147,147,QTY,young,0,0, ,-120.0616038,33.99219907,quercus tomentella
+39,0,0,360,360,QTY,Point_generic,chy91601.ssf,10,80.936,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,148,148,QTY,young,0,0, ,-120.0616329,33.99222005,quercus tomentella
+40,0,0,361,361,QTY,Point_generic,chy91601.ssf,10,80.552,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,149,149,QTY,young,0,0, ,-120.0615759,33.99222544,quercus tomentella
+41,0,0,370,370,QTA QTY 13 STEMS,Point_generic,chy91701.ssf,63,260.927,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,158,158,QTA QTY 13 STEMS,young,0,13,1 adult,-120.0686478,33.9798574,quercus tomentella
+42,0,0,372,372,QTA,Point_generic,chy91701.ssf,10,257.118,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,160,160,QTA,adult,0,0, ,-120.068496,33.98000477,quercus tomentella
+43,0,0,389,389,QTA,Point_generic,lob91501.ssf,52,30.939,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,165,165,QTA,adult,0,0, ,-120.0942721,34.0125507,quercus tomentella
+44,0,0,473,473,5qta approx 10qty,Point_generic,wind9101.ssf,27,171.1,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,168,168,5qta approx 10qty,young,0,10,5 adult,-120.0742459,33.98738038,quercus tomentella
+45,0,0,482,482,3QTA 5QTY AT LEAST,Point_generic,wind9101.ssf,47,183.375,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,177,177,3QTA 5QTY AT LEAST,young,0,5,3 adult,-120.075184,33.98783314,quercus tomentella
+46,0,0,490,490,SAMEGROVE8QTAAPPROX42QTY,Point_generic,wind9101.ssf,63,166.7,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,185,185,SAMEGROVE8QTAAPPROX42QTY,young,0,42,8 adult,-120.0753207,33.98808655,quercus tomentella
+47,0,0,491,491,QTA UNKNOWN NUMBER,Point_generic,wind9101.ssf,116,168.848,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,186,186,QTA UNKNOWN NUMBER,adult,0,0, ,-120.0761029,33.98792036,quercus tomentella
+48,0,0,493,493,QTY1QTA1,Point_generic,wind9101.ssf,27,157.595,C:\Temp\Laura K GPS Files\zone10\ZN10OAKS.shp,0, ,0,0,0,188,188,QTY1QTA1,young,0,0,1 adult,-120.0760034,33.98883071,quercus tomentella
+49,0,0,0,0,yng qt brw, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,281,281,yng qt brw,young,0,0, ,-120.0804862,33.98016453,quercus tomentella
+50,0,0,0,0,qt mature 6 trks, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,301,301,qt mature 6 trks,adult,0,6, ,-120.0715143,33.98492355,quercus tomentella
+51,0,0,0,0,qt mature on floor 5 ind, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,313,313,qt mature on floor 5 ind,adult,0,0, ,-120.0713605,33.98550708,quercus tomentella
+52,0,0,0,0,qt mat upstr in bott ca 70 trks, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,319,319,qt mat upstr in bott ca 70 trks,adult,0,70, ,-120.0735386,33.98583875,quercus tomentella
+53,0,0,0,0,qt mat upstream, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,321,321,qt mat upstream,adult,0,0, ,-120.0707687,33.98558344,quercus tomentella
+54,0,0,0,0,qt a, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Sr0830xxP.shp,0, ,0,0,0,323,323,qt a,adult,0,0, ,-120.068545,33.9798895,quercus tomentella
+55,0,0,0,0,YNG QUT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,370,370,YNG QUT,young,0,0, ,-120.0770982,33.97725158,quercus tomentella
+56,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,373,373,YNG QUTO,young,0,0, ,-120.0772816,33.97726742,quercus tomentella
+57,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,374,374,YNG QUTO,young,0,0, ,-120.0771893,33.97729683,quercus tomentella
+58,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,375,375,YNG QUTO,young,0,0, ,-120.0771797,33.97730812,quercus tomentella
+59,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,376,376,YNG QUTO,young,0,0, ,-120.0771731,33.97730328,quercus tomentella
+60,0,0,0,0,YNG QUTO IN BAPI, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,377,377,YNG QUTO IN BAPI,young,0,0, ,-120.0770804,33.97733366,quercus tomentella
+61,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,379,379,YNG QUTO,young,0,0, ,-120.077005,33.97740289,quercus tomentella
+62,0,0,0,0,YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,380,380,YNG QUTO,young,0,0, ,-120.0771993,33.9773168,quercus tomentella
+63,0,0,0,0,YNG QUTO IN BAPI, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,381,381,YNG QUTO IN BAPI,young,0,0, ,-120.0773633,33.97743133,quercus tomentella
+64,0,0,0,0,YNG QUTO IN BAPI, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,383,383,YNG QUTO IN BAPI,young,0,0, ,-120.0773741,33.97740722,quercus tomentella
+65,0,0,0,0,YNG QUTO IN BAPI AG, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,395,395,YNG QUTO IN BAPI AG,young,0,0, ,-120.0882189,33.97499947,quercus tomentella
+66,0,0,0,0,YNG QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,401,401,YNG QT,young,0,0, ,-120.0883661,33.97511539,quercus tomentella
+67,0,0,0,0,YNG QT IN BAPI GRS, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,406,406,YNG QT IN BAPI GRS,young,0,0, ,-120.0882234,33.97499314,quercus tomentella
+68,0,0,0,0,YNG BR QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,407,407,YNG BR QT,young,0,0, ,-120.0881961,33.97501442,quercus tomentella
+69,0,0,0,0,YNG QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,408,408,YNG QT,young,0,0, ,-120.0883622,33.97511771,quercus tomentella
+70,0,0,0,0,BR YNG QT IN EROD CHAN, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,414,414,BR YNG QT IN EROD CHAN,young,0,0, ,-120.0884036,33.97593773,quercus tomentella
+71,0,0,0,0,BRW YN QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,415,415,BRW YN QT,young,0,0, ,-120.088407,33.97594338,quercus tomentella
+72,0,0,0,0,BRW YNG QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,417,417,BRW YNG QT,young,0,0, ,-120.0885174,33.97601181,quercus tomentella
+73,0,0,0,0,4 BRW YNG QT THIS AREA ANNU, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,418,418,4 BRW YNG QT THIS AREA ANNU,young,0,4, ,-120.0885503,33.97589702,quercus tomentella
+74,0,0,0,0,2 THIS YR QT HERE, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,419,419,2 THIS YR QT HERE,young,0,2,2 years old,-120.0885244,33.97587022,quercus tomentella
+75,0,0,0,0,YNG QT SDL UND LG QT, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,435,435,YNG QT SDL UND LG QT,young,0,0, ,-120.0878644,33.97711486,quercus tomentella
+76,0,0,0,0,YNG QUTO BRW, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,443,443,YNG QUTO BRW,young,0,0, ,-120.087289,33.9761184,quercus tomentella
+77,0,0,0,0,YNG QT SDL, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,447,447,YNG QT SDL,young,0,0, ,-120.0868139,33.97645372,quercus tomentella
+78,0,0,0,0,YNG QT IN GULLEY, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,449,449,YNG QT IN GULLEY,young,0,0, ,-120.0866256,33.97656244,quercus tomentella
+79,0,0,0,0,SEV YNG QUTO IN GLLEY, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,450,450,SEV YNG QUTO IN GLLEY,young,0,0,several,-120.0866468,33.97623241,quercus tomentella
+80,0,0,0,0,BRW YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,453,453,BRW YNG QUTO,young,0,0, ,-120.0870457,33.97668774,quercus tomentella
+81,0,0,0,0,V YNG QUTO, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,458,458,V YNG QUTO,young,0,0, ,-120.0864961,33.97571804,quercus tomentella
+82,0,0,0,0,QT YNG SDL, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,468,468,QT YNG SDL,young,0,0,1 seedling,-120.0865051,33.9750838,quercus tomentella
+83,0,0,0,0,QUTO YOUNG, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,506,506,QUTO YOUNG,young,0,0, ,-120.0766104,33.97744165,quercus tomentella
+84,0,0,0,0,QUTO YOUNG, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,519,519,QUTO YOUNG,young,0,0, ,-120.0768091,33.97772046,quercus tomentella
+85,0,0,0,0,QUTO YNG, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Qutoaug5P.shp,0, ,0,0,0,525,525,QUTO YNG,young,0,0, ,-120.0766021,33.97777622,quercus tomentella
+86,0,0,0,0,qta, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,575,575,qta,adult,0,0, ,-120.0615698,33.9921444,quercus tomentella
+87,0,0,0,0,qta, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,576,576,qta,adult,0,0, ,-120.0615168,33.99213591,quercus tomentella
+88,0,0,0,0,qta, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,577,577,qta,adult,0,0, ,-120.0616077,33.99214711,quercus tomentella
+89,0,0,0,0,qty, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,578,578,qty,young,0,0, ,-120.0616291,33.99216236,quercus tomentella
+90,0,0,0,0,qty, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,579,579,qty,young,0,0, ,-120.0616408,33.99217082,quercus tomentella
+91,0,0,0,0,qty, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,580,580,qty,young,0,0, ,-120.0616732,33.99217735,quercus tomentella
+92,0,0,0,0,qta, , ,0,0,C:\Temp\Laura K GPS Files\zone10\Chy91401P.shp,0, ,0,0,0,581,581,qta,adult,0,0, ,-120.0616642,33.99218193,quercus tomentella
