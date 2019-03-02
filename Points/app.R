@@ -15,17 +15,6 @@ library(leaflet)
 library(RColorBrewer)
 
 
-# Read in the data
-combo <- read.csv("data/oaks/sri/combo.csv")
-scr_points <- read.csv("data/oaks/scr/all_4326.csv")
-
-
-# Make icon for the maps as marker image. However it would work better with circles
-leaf <- makeIcon(
-  iconUrl = "G:/data/GitHub/244_JUAW/app/data/oaks/leaf_icon.png", 
-  iconWidth = 50, iconHeight = 50)
-
-
 
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
@@ -81,10 +70,15 @@ ui <- navbarPage("Oak Nuts ;)", theme = shinytheme("flatly"),
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   
+  
   points_color <- reactive({
     input$points_colors
     
   })
+  
+  # Read in the data
+  combo <- read.csv("data/oaks/sri/combo.csv")
+  scr_points <- read.csv("data/oaks/scr/all_4326.csv")
   
   output$SCRpoints <- renderLeaflet({
     leaflet() %>% 
@@ -102,6 +96,10 @@ server <- function(input, output) {
     input$points_colors
     
   })
+  
+  # Read in the data
+  combo <- read.csv("data/oaks/sri/combo.csv")
+  scr_points <- read.csv("data/oaks/scr/all_4326.csv")
   
   output$SRIpoints <- renderLeaflet({
     leaflet() %>% 

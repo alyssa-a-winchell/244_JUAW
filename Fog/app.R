@@ -35,9 +35,9 @@ ui <- navbarPage("Hot details from this slutty oak's secret Life!", theme = shin
               mainPanel(
                 tabsetPanel(
                   tabPanel("Santa Cruz",
-                           leafletOutput("scrmap", width=1000, height=500)),
+                           leafletOutput("scrfogmap", width=1000, height=500)),
                   tabPanel("Santa Rosa",
-                           leafletOutput("srimap", width=1000, height=500))
+                           leafletOutput("srifogmap", width=1000, height=500))
                 )
               )
             )),
@@ -61,28 +61,28 @@ server <- function(input, output) {
   # })
   
 
-  output$scrmap <- renderLeaflet({
+  output$scrfogmap <- renderLeaflet({
     
     
-    scen<-switch(input$fogscen,
+    foggy_scen<-switch(input$fogscen,
                  "Constant"=scen<-"const", 
                  "Increase"=scen<-"inc", 
                  "Decrease"=scen<-"dec", 
                  "Elevation Threshold"=scen<-"elev")
 
-    time<-switch(input$timeperiods,
+    fog_time<-switch(input$timeperiods,
                  "1981-2010"=time<-"historic",
                  "2010-2039"=time<-"2010_2039",
                  "2040-2069"=time<-"2040_2069", 
                  "2070-2099"=time<-"2070_2099")
     
     
-    scr<-raster(paste0("data/fog/scr/",scen,"/", time, ".tif"))
-    proj4string(scr) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+    fog_scr<-raster(paste0("data/fog/scr/",foggy_scen,"/", fog_time, ".tif"))
+    proj4string(fog_scr) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
     fog_stack_list <- list.dirs("data/fog/scr/", recursive = TRUE, full.names = TRUE)
     
-    fog_files <- fog_stack_list[grep(paste0(scen), fog_stack_list, fixed=T)]
+    fog_files <- fog_stack_list[grep(paste0(foggy_scen), fog_stack_list, fixed=T)]
     
     fog_files_list <- list.files(fog_files, recursive = TRUE, full.names = TRUE)
     
@@ -98,36 +98,36 @@ server <- function(input, output) {
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
-      addRasterImage(scr, colors = fog_pal, opacity = 0.8) %>% 
+      addRasterImage(fog_scr, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
                 title = "Probability of Fog Inundation",
-                labFormat = labelFormat(transform=function(scr) sort (scr, decreasing=FALSE)))
+                labFormat = labelFormat(transform=function(fog_scr) sort (fog_scr, decreasing=FALSE)))
                   
     
 }) #end render leaflet
   
-  output$srimap <- renderLeaflet({
+  output$srifogmap <- renderLeaflet({
     
     
-    scen<-switch(input$fogscen,
+    foggy_scen<-switch(input$fogscen,
                  "Constant"=scen<-"const", 
                  "Increase"=scen<-"inc", 
                  "Decrease"=scen<-"dec", 
                  "Elevation Threshold"=scen<-"elev")
     
-    time<-switch(input$timeperiods,
+    fog_time<-switch(input$timeperiods,
                  "1981-2010"=time<-"historic",
                  "2010-2039"=time<-"2010_2039",
                  "2040-2069"=time<-"2040_2069", 
                  "2070-2099"=time<-"2070_2099")
     
     
-    sri<-raster(paste0("data/fog/sri/",scen,"/", time, ".tif"))
-    proj4string(sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
+    fog_sri<-raster(paste0("data/fog/sri/",foggy_scen,"/", fog_time, ".tif"))
+    proj4string(fog_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
     fog_stack_list <- list.dirs("data/fog/sri/", recursive = TRUE, full.names = TRUE)
     
-    fog_files <- fog_stack_list[grep(paste0(scen), fog_stack_list, fixed=T)]
+    fog_files <- fog_stack_list[grep(paste0(foggy_scen), fog_stack_list, fixed=T)]
     
     fog_files_list <- list.files(fog_files, recursive = TRUE, full.names = TRUE)
     
@@ -141,12 +141,12 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addTiles() %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
-      addRasterImage(sri, colors = fog_pal, opacity = 0.8) %>% 
+      addRasterImage(fog_sri, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
                 title = "Probability of Fog Inundation",
-                labFormat = labelFormat(transform=function(sri) sort (sri, decreasing=FALSE)))
+                labFormat = labelFormat(transform=function(fog_sri) sort (fog_sri, decreasing=FALSE)))
     
     
   })
