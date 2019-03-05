@@ -308,11 +308,11 @@ server <- function(input, output) {
     
     
     #This is where you want ot start copying code from
-    climate_stack_list <- list.dirs("data/climate/scr/", recursive = TRUE, full.names = TRUE)
+    climate_stack_list <- list.dirs("data/climate/sri/", recursive = TRUE, full.names = TRUE)
     files <- climate_stack_list[grep(paste0(climate_scen), climate_stack_list, fixed=T)]
     climate_files2 <- dir(files, recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
     
-    climatehist_files <- list.files("data/climate/scr/historic", recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
+    climatehist_files <- list.files("data/climate/sri/historic", recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
     
     climate_files <- c(climatehist_files, climate_files2)
     
