@@ -15,6 +15,7 @@ library(leaflet)
 library(sf)
 library(raster)
 library(rgdal)
+library(wesanderson)
 
 
 # Define UI for application that displays data for fog scenarios on SRI and SCR
@@ -76,10 +77,9 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                             mainPanel(
                               tabsetPanel(
                                 tabPanel("Santa Cruz",
-                                         leafletOutput("scrfogmap", width=1000, height=500),
-                                         leafletOutput("scrhistoricfogmap", width=1000, height=500)),
+                                         leafletOutput("scrfogmap", width=700, height=400)),
                                 tabPanel("Santa Rosa",
-                                         leafletOutput("srifogmap", width=1000, height=500))
+                                         leafletOutput("srifogmap", width=700, height=400))
                               )
                             )
                           )),
@@ -104,7 +104,6 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                                           "2040-2069", 
                                                           "2070-2099"),
                                               animate = TRUE),
-                              checkboxInput("climate_legend", "Show legend", TRUE),
                               selectInput("raster_color_climate", "Choose Color Theme:",
                                           c("Rainbow" = "Spectral",
                                             "Yellow, Green, Blue" = "YlGnBu",
@@ -116,11 +115,11 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                             mainPanel(
                               tabsetPanel(
                                 tabPanel("Santa Cruz",
-                                         leafletOutput("SCRclimatemap"), 
-                                         leafletOutput("scrHC")),
+                                         leafletOutput("SCRclimatemap", width=700, height=400), 
+                                         leafletOutput("scrHC", width=650, height=400)),
                                 tabPanel("Santa Rosa",
-                                         leafletOutput("SRIclimatemap"),
-                                         leafletOutput("sriHC"))
+                                         leafletOutput("SRIclimatemap", width=700, height=400),
+                                         leafletOutput("sriHC", width=650, height=400))
                               )
                               
                             ),
@@ -159,7 +158,7 @@ server <- function(input, output) {
   })
   
   sri_color <- reactive({
-    input$points_colors
+    wes_palette(input$points_colors)
     
   })
   
@@ -359,8 +358,6 @@ server <- function(input, output) {
                            "2070-2099"=climate_hands<-"2070_2099")
     
     
-
-    
     climate_var<-switch(input$climate_variable,
                         "Climate Water Deficit"=climate_var<-"cwd",
                         "Precipitation"=climate_var<-"ppt", 
@@ -534,7 +531,7 @@ server <- function(input, output) {
     
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
-      setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
+      setView(lng = -119.722862, lat = 34.020433, zoom = 1) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
                 title = climate_title())
