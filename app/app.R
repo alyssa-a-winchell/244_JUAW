@@ -115,11 +115,15 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                             mainPanel(
                               tabsetPanel(
                                 tabPanel("Santa Cruz",
-                                         leafletOutput("SCRclimatemap", width=700, height=400), 
-                                         leafletOutput("scrHC", width=650, height=400)),
+                                         h3("Projected Climate"),
+                                         leafletOutput("SCRclimatemap", width=700, height=400),
+                                         h3("Historic Climate"),
+                                         leafletOutput("scrHC", width=700, height=400)),
                                 tabPanel("Santa Rosa",
+                                         h3("Projected Climate"),
                                          leafletOutput("SRIclimatemap", width=700, height=400),
-                                         leafletOutput("sriHC", width=650, height=400))
+                                         h3("Historic Climate"),
+                                         leafletOutput("sriHC", width=700, height=400))
                               )
                               
                             ),
@@ -210,7 +214,7 @@ server <- function(input, output) {
     
     fog_pal <- colorNumeric(
       palette = "Blues",
-      domain = values(fog_scr),
+      domain = values(fog_stack),
       na.color = NA
     )
     
@@ -219,7 +223,7 @@ server <- function(input, output) {
       addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(fog_scr, colors = fog_pal, opacity = 0.8) %>% 
-      addLegend("topright", pal = fog_pal, values= values(fog_scr),
+      addLegend("topright", pal = fog_pal, values= values(fog_stack),
                 title = "Probability of Fog Inundation",
                 labFormat = labelFormat(transform=function(fog_scr) sort (fog_scr, decreasing=FALSE)))
     
@@ -531,7 +535,7 @@ server <- function(input, output) {
     
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
-      setView(lng = -119.722862, lat = 34.020433, zoom = 1) %>% 
+      setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
                 title = climate_title())
