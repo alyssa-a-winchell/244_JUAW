@@ -161,11 +161,6 @@ server <- function(input, output) {
     combo[ combo$Age == input$age, ]
   })
   
-  sri_color <- reactive({
-    wes_palette(input$points_colors)
-    
-  })
-  
   # Read in the data
   combo <- read.csv("data/oaks/sri/combo.csv")
   scr_points <- read.csv("data/oaks/scr/all_4326.csv")
