@@ -167,7 +167,7 @@ server <- function(input, output) {
   
   output$SRIpoints <- renderLeaflet({
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) 
     
   })
@@ -199,9 +199,11 @@ server <- function(input, output) {
     fog_scr<-raster(paste0("data/fog/scr/",foggy_scen,"/", fog_time, ".tif"))
     proj4string(fog_scr) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
-    fog_stack_list <- list.dirs("data/fog/scr/", recursive = TRUE, full.names = TRUE)
+    fog_stack_list <- list.dirs("data/fog/scr/", full.names = TRUE)
     
     fog_files <- fog_stack_list[grep(paste0(foggy_scen), fog_stack_list, fixed=T)]
+    
+    fog_files_list <- list.files(fog_files, full.names = TRUE)
     
     fog_files2 <- fog_files_list[grep(".tif", fog_files_list, fixed=T)]
     
@@ -219,7 +221,7 @@ server <- function(input, output) {
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(fog_scr, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
-                title = "Probability of Fog Inundation",
+                title = "Probability",
                 labFormat = labelFormat(transform=function(fog_scr) sort (fog_scr, decreasing=FALSE)))
     
     
@@ -266,7 +268,7 @@ server <- function(input, output) {
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(fog_sri, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
-                title = "Probability of Fog Inundation",
+                title = "Probability",
                 labFormat = labelFormat(transform=function(fog_stack) sort (fog_stack, decreasing=FALSE)))
     
     
@@ -333,7 +335,7 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
@@ -396,7 +398,7 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
@@ -464,7 +466,7 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
@@ -523,19 +525,19 @@ server <- function(input, output) {
       input$climate_variable
     })
     
+    leg_boobs = "CWD"
     
-    
-    
-    
+
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
-                title = climate_title())
+                title = leg_boobs)
     
     
+
     
   })
   
