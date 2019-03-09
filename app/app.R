@@ -15,6 +15,7 @@ library(leaflet)
 library(sf)
 library(raster)
 library(rgdal)
+library(tidyverse)
 library(wesanderson)
 
 
@@ -29,25 +30,25 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                                        "Red" = "darkred",
                                                        "Green" = "yellowgreen",
                                                        "Purple" = "#8a4f7e",
-                                                       "Orange" = "#d9a440"))
+                                                       "Orange" = "#d9a440")),
+                                         p("Each point symbolizes either individual trees or a grove of island oak. Data Source: The National Parks Service and Laura Kindsvater.")
                             ),
                             mainPanel(
                               
                               tabsetPanel(
                                 tabPanel("Santa Cruz",
-                                         h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Cruz are concentrated on the northern side of the island. In total, there are 271 total oak points on Santa Cruz."),
-                                         leafletOutput("SCRpoints")),
+                                         leafletOutput("SCRpoints"),
+                                         p("Notice how the oaks in Santa Cruz are concentrated on the northern side of the island. In total, there are 271 total oak points on Santa Cruz.")),
                                 
                                 tabPanel("Santa Rosa",
-                                         h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Rosa are found mainly in the central valley and away from the coast. In total, there is a total of 1001 oak points on Santa Rosa. Out of these points, 202 are seedlings and 90 are adults."),
                                          sidebarPanel(
                                            radioButtons("age", "Choose Age Group:",
                                                         c("Seedlings" = "seed",
-                                                          "Adults" = "adult",
-                                                          "All" = "all")),
+                                                          "Adults" = "adult")),
                                            width = 5
                                          ),
-                                         leafletOutput("SRIpoints")
+                                         leafletOutput("SRIpoints"),
+                                         p("Notice how the oaks in Santa Rosa are found mainly in the central valley and away from the coast. In total, there is a total of 1001 oak points on Santa Rosa. Out of these points, 202 are seedlings and 90 are adults. Selected color highlights either known seedlings/saplings or known adults, depending on age group option selected.")
                                          
                                 )
                                 
@@ -70,7 +71,8 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                               # Input: Custom 30 yr periods format with basic animation
                               sliderTextInput("timeperiods","Time Periods" , 
                                               choices = c("1981-2010", "2010-2039", "2040-2069", "2070-2099"),
-                                              animate = TRUE)
+                                              animate = TRUE),
+                              p("Data Source: Rastogi, B., Williams, A. P., Fischer, D. T., Iacobellis, S. F., McEachern, K., Carvalho, L., ... & Still, C. J. (2016). Spatial and temporal patterns of cloud cover and fog inundation in coastal California: Ecological implications. Earth Interactions, 20(15), 1-19.")
                             ),
                             
                             # Show maps of SRI and SCR with the chosen fog scenario with seperate tabs for each island
@@ -109,7 +111,8 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                             "Yellow, Green, Blue" = "YlGnBu",
                                             "Yellow, Green" = "YlGn",
                                             "Purple, Red" = "PuRd",
-                                            "Yellow, Orange, Red" = "YlOrRd"))
+                                            "Yellow, Orange, Red" = "YlOrRd")),
+                              p("Data Source: Flint, L.E. and Flint, A.L., 2014, California Basin Characterization Model: A Dataset of Historical and Future Hydrologic Response to Climate Change, (ver. 1.1, May 2017): U.S. Geological Survey Data Release, https://doi.org/10.5066/F76T0JPB.")
                             ),
                             
                             mainPanel(
@@ -164,12 +167,13 @@ server <- function(input, output) {
   # Read in the data
   combo <- read.csv("data/oaks/sri/combo.csv")
   scr_points <- read.csv("data/oaks/scr/all_4326.csv")
-  
+  alloak <- combo[ combo$Age == "all", ]
+ 
+ 
   output$SRIpoints <- renderLeaflet({
     leaflet() %>% 
       addProviderTiles(providers$Esri.WorldImagery) %>% 
-      setView(lng = -120.107103, lat = 33.968757, zoom = 11) 
-    
+      setView(lng = -120.107103, lat = 33.968757, zoom = 11)
   })
   
   
@@ -177,6 +181,7 @@ server <- function(input, output) {
     
     leafletProxy("SRIpoints") %>%
       clearMarkers() %>% 
+      addCircleMarkers(data = alloak, lng = ~POINT_X, lat = ~POINT_Y, radius = 4, fillColor = "mintcream", stroke = FALSE, fillOpacity = 0.4) %>%
       addCircleMarkers(data = filteredData(), lng = ~POINT_X, lat = ~POINT_Y, radius = 4, fillColor = points_color(), stroke = FALSE, fillOpacity = 0.4)
   })
   
