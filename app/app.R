@@ -167,7 +167,7 @@ server <- function(input, output) {
   
   output$SRIpoints <- renderLeaflet({
     leaflet() %>% 
-      addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
+      addProviderTiles(providers$Esri.WorldImagery) %>% 
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) 
     
   })
@@ -217,7 +217,7 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addProviderTiles(providers$Esri.WorldImagery) %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik) %>%
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(fog_scr, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
@@ -264,7 +264,7 @@ server <- function(input, output) {
     
     
     leaflet() %>% 
-      addTiles() %>% 
+      addProviderTiles(providers$OpenStreetMap.Mapnik)  %>%
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(fog_sri, colors = fog_pal, opacity = 0.8) %>% 
       addLegend("topright", pal = fog_pal, values= values(fog_stack),
@@ -307,7 +307,7 @@ server <- function(input, output) {
     proj4string(climate_sri) <- CRS("+proj=aea +lat_1=34 +lat_2=40.5 +lat_0=0 +lon_0=-120 +x_0=0 +y_0=-4000000 +ellps=GRS80 +datum=NAD83 +units=m +no_defs")
     
     
-    #This is where you want ot start copying code from
+    
     climate_stack_list <- list.dirs("data/climate/sri/", recursive = TRUE, full.names = TRUE)
     files <- climate_stack_list[grep(paste0(climate_scen), climate_stack_list, fixed=T)]
     climate_files2 <- dir(files, recursive=TRUE, full.names=TRUE, pattern = paste0(climate_var, ".tif"))
@@ -318,7 +318,7 @@ server <- function(input, output) {
     
     climate_stack <- stack(climate_files)
     
-    climate_colors <- reactive({ # delete
+    climate_colors <- reactive({ 
       input$raster_color_climate
     })
     
@@ -329,9 +329,16 @@ server <- function(input, output) {
       reverse = TRUE
     )
     
-    climate_title <- reactive({
-      input$climate_variable
-    })
+    if (input$climate_variable == "Climate Water Deficit") {
+      climate_title = "CWD (mm)"
+    } else if (input$climate_variable == "Precipitation") {
+      climate_title = "PPT (mm)"
+    } else if (input$climate_variable == "Maximum Summer Temperature") {
+      climate_title = "TMX (°C)"
+    } else if (input$climate_variable == "Minimum Winter Temperature") {
+      climate_title = "TMN (°C)"
+    } else
+      climate_title = "CWD (mm)"
     
     
     leaflet() %>% 
@@ -339,7 +346,7 @@ server <- function(input, output) {
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
-                title = climate_title())
+                title = climate_title)
      
     
   })
@@ -392,9 +399,16 @@ server <- function(input, output) {
       reverse = TRUE
     )
     
-    climate_title <- reactive({
-      input$climate_variable
-    })
+    if (input$climate_variable == "Climate Water Deficit") {
+      climate_title = "CWD (mm)"
+    } else if (input$climate_variable == "Precipitation") {
+      climate_title = "PPT (mm)"
+    } else if (input$climate_variable == "Maximum Summer Temperature") {
+      climate_title = "TMX (°C)"
+    } else if (input$climate_variable == "Minimum Winter Temperature") {
+      climate_title = "TMN (°C)"
+    } else
+      climate_title = "CWD (mm)"
     
     
     leaflet() %>% 
@@ -402,7 +416,7 @@ server <- function(input, output) {
       setView(lng = -120.107103, lat = 33.968757, zoom = 11) %>% 
       addRasterImage(climate_sri, colors = pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = pal, values= values(climate_stack),
-                title = climate_title())
+                title = climate_title)
     
     
   })
@@ -456,12 +470,17 @@ server <- function(input, output) {
       reverse = TRUE
     )
     
-    climate_title <- reactive({
-      input$climate_variable
-    })
     
-    
-    
+    if (input$climate_variable == "Climate Water Deficit") {
+      climate_title = "CWD (mm)"
+    } else if (input$climate_variable == "Precipitation") {
+      climate_title = "PPT (mm)"
+    } else if (input$climate_variable == "Maximum Summer Temperature") {
+      climate_title = "TMX (°C)"
+    } else if (input$climate_variable == "Minimum Winter Temperature") {
+      climate_title = "TMN (°C)"
+    } else
+      climate_title = "CWD (mm)"
     
     
     
@@ -470,7 +489,7 @@ server <- function(input, output) {
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
-                title = climate_title())
+                title = climate_title)
     
     
     
@@ -521,20 +540,24 @@ server <- function(input, output) {
       reverse = TRUE
     )
     
-    climate_title <- reactive({
-      input$climate_variable
-    })
-    
-    leg_boobs = "CWD"
-    
 
-    
+    if (input$climate_variable == "Climate Water Deficit") {
+      climate_title = "CWD (mm)"
+    } else if (input$climate_variable == "Precipitation") {
+        climate_title = "PPT (mm)"
+    } else if (input$climate_variable == "Maximum Summer Temperature") {
+        climate_title = "TMX (°C)"
+    } else if (input$climate_variable == "Minimum Winter Temperature") {
+        climate_title = "TMN (°C)"
+      } else
+        climate_title = "CWD (mm)"
+      
     leaflet() %>% 
       addProviderTiles(providers$OpenStreetMap.Mapnik) %>% 
       setView(lng = -119.722862, lat = 34.020433, zoom = 11) %>% 
       addRasterImage(climate_scr, colors = climate_pal, opacity = 0.8) %>% 
       addLegend("bottomright", pal = climate_pal, values= values(climate_stack),
-                title = leg_boobs)
+                title = climate_title)
     
     
 
