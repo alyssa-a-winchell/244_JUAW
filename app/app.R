@@ -39,7 +39,7 @@ ui <- navbarPage("EXPLICIT: Sweaty Oak Nuts)", theme = shinytheme("flatly"),
                                          leafletOutput("SCRpoints")),
                                 
                                 tabPanel("Santa Rosa",
-                                         h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Rosa are found mainly in the central valley and away from the coast. In total, there is a total of 1001 oak points on Santa Rosa. Out of these points, XX are seedlings and XX are adults."),
+                                         h6("Each point symbolizes either individual trees or a grove of island oak. Notice how the oaks in Santa Rosa are found mainly in the central valley and away from the coast. In total, there is a total of 1001 oak points on Santa Rosa. Out of these points, 202 are seedlings and 90 are adults."),
                                          sidebarPanel(
                                            radioButtons("age", "Choose Age Group:",
                                                         c("Seedlings" = "seed",
